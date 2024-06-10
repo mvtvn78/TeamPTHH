@@ -33,13 +33,13 @@
             <form>
               <h1>Login Form</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="login-un form-control" placeholder="Username" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="login-pw form-control" placeholder="Password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Log in</a>
+                <a class="btn btn-default submit" id="lg-btn">Log in</a>
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
@@ -67,16 +67,26 @@
             <form>
               <h1>Create Account</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="email" class="reg-email form-control" placeholder="Email" required="" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="password" class="reg-pw form-control" placeholder="Password" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="text" class="reg-gender form-control" placeholder="Gender" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <input type="text" class="reg-MaQT form-control" placeholder="Ma Quoc Tich" required="" />
+              </div>
+              <div>
+                <input type="text" class="reg-un form-control" placeholder="Ho Ten" required="" />
+              </div>
+              <div>
+                <input type="text" class="reg-birthd form-control" placeholder="nnnn-tt-nn" required="" />
+              </div>
+
+              <div>
+                <a class="btn btn-default submit" href="index.html" id="reg-btn">Submit</a>
               </div>
 
               <div class="clearfix"></div>
@@ -99,5 +109,9 @@
         </div>
       </div>
     </div>
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="./js/MyJs/login.js"></script>
+    <script src="./js/MyJs/common.js"></script>
   </body>
 </html>
