@@ -1,0 +1,21 @@
+.Anh img
+{
+    width: 250px;
+    height: 250px;
+}
+/* code cho upload */
+.file_button_container,
+.file_button_container input {
+     height: 47px;
+     width: 250px;
+ }
+.center 
+{
+    text-align: center;
+}
+.file_button_container {
+    background: url("../images/upload.png");
+}
+ .file_button_container input {
+     opacity: 0;
+ }
