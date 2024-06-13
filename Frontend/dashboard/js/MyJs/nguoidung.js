@@ -46,7 +46,7 @@ function DisplayDateTime(datetime)
 function comboBox()
 {
     // load combobox cho mã quốc tịch
-    queryDataGet("http://localhost:1594/api/v1/nations", "", function (res) {
+    queryDataGet("http://localhost:6969/api/v1/nations", "", function (res) {
         // lấy dữ liệu từ api
         const data = res.data;
         // lấy error code để check
@@ -64,7 +64,7 @@ function comboBox()
         }
       });
     // load combobox cho mã loại
-    queryDataGet("http://localhost:1594/api/v1/usertypes", "", function (res) {
+    queryDataGet("http://localhost:6969/api/v1/usertypes", "", function (res) {
         // lấy dữ liệu từ api
         const data = res.data;
         // lấy error code để check
@@ -84,8 +84,8 @@ function comboBox()
 }
 // lấy danh sách người dùng
 function show()
-{
-    queryDataGet("http://localhost:1594/api/v1/users","",function(res){
+{   
+    queryDataGet("http://localhost:6969/api/v1/users","",function(res){
         // lấy dữ liệu từ api
         const data = res.data
         // lấy error code để check
@@ -114,7 +114,6 @@ function show()
                                 '<td>'+hienthingaysinh+'</td>'+
                                 '<td>'+obj.Email+'</td>'+
                                 '<td>'+obj.Anh+'</td>'+
-                                '<td>'+obj.TenND+'</td>'+
                                 '<td>'+obj.MatKhau+'</td>'+
                                 '<td>'+DisplayDateTime(ngaytao.toLocaleString())+'</td>'+
                                 '<td>'+DisplayDateTime(ngaysua.toLocaleString())+'</td>'+
@@ -129,14 +128,13 @@ function show()
                                 '" data-date ="'+ConvertDate(ngaysinh.toLocaleDateString(),false)+
                                 '" data-email ="'+obj.Email+
                                 '" data-anh ="'+obj.Anh+
-                                '" data-tend ="'+obj.TenND+
                                 '" data-mk ="'+obj.MatKhau+
                                 '"> '+
                                 '<i class="fa fa-edit"></i>&nbsp;Sửa</span></td>'+
                               '</tr>';
               }
             // chèn vào
-            $(".nguoidung_tb").html(htmls);
+            $(".nguoidung_tb").html(htmls); 
         }
     })  
 }
@@ -144,8 +142,12 @@ function show()
 function showSearch ()
 {
     const keyseacrh = $(".txtsearch").val()
+    const datasend ={
+        maND : keyseacrh,
+        tenND : keyseacrh,
+    }
     console.log(keyseacrh);
-    queryDataGet("http://localhost:1594/api/v1/users?id="+keyseacrh,"",function(res){
+    queryDataGet("http://localhost:6969/api/v1/user_search",datasend,function(res){
         // lấy dữ liệu từ api
         const data = res.data
         // lấy error code để check
@@ -174,10 +176,9 @@ function showSearch ()
                                 '<td>'+hienthingaysinh+'</td>'+
                                 '<td>'+obj.Email+'</td>'+
                                 '<td>'+obj.Anh+'</td>'+
-                                '<td>'+obj.TenND+'</td>'+
                                 '<td>'+obj.MatKhau+'</td>'+
-                                '<td>'+ConvertDateTime(ngaytao.toLocaleString())+'</td>'+
-                                '<td>'+ConvertDateTime(ngaysua.toLocaleString())+'</td>'+
+                                '<td>'+DisplayDateTime(ngaytao.toLocaleString())+'</td>'+
+                                '<td>'+DisplayDateTime(ngaysua.toLocaleString())+'</td>'+
                                 '<td> <span class="badge badge-danger nut_xoa" data-ma ="'+obj.MAND+'"> '+
                                 '<i class="fa fa-remove"></i>&nbsp;Xóa</span>' +
                                 '<span class="badge badge-danger nut_sua" data-ma ="'+
@@ -189,7 +190,6 @@ function showSearch ()
                                 '" data-date ="'+ConvertDate(ngaysinh.toLocaleDateString(),false)+
                                 '" data-email ="'+obj.Email+
                                 '" data-anh ="'+obj.Anh+
-                                '" data-tend ="'+obj.TenND+
                                 '" data-mk ="'+obj.MatKhau+
                                 '"> '+
                                 '<i class="fa fa-edit"></i>&nbsp;Sửa</span></td>'+
@@ -213,7 +213,6 @@ $(".nguoidung_tb").on('click','.nut_sua',function()
      $(".email").prop("disabled",false)
      $(".pass").prop("disabled",false)
      $(".file_anh").prop("disabled",false)
-     $(".tenND").prop("disabled",false)
      $(".pass").prop("disabled",false)
      $(".cbMaLoai").prop("disabled",false)
      $(".cbQT").prop("disabled",false)
@@ -258,7 +257,7 @@ $(".nguoidung_tb").on('click','.nut_xoa',function()
   {
     if (result==true)
     {
-        queryDataDelete("http://localhost:1594/api/v1/user_remove",{maND:ma},function(res)
+        queryDataDelete("http://localhost:6969/api/v1/user_remove",{maND:ma},function(res)
         {
             if(res.ErrorCode ==0)
                 bootbox.alert("Xóa thành công" + ma)
@@ -346,7 +345,7 @@ $(".btnsave").click(function()
             pass :$(".pass").val(),
         }
         console.log(datasend);
-        queryDataPost("http://localhost:1594/api/v1/register",datasend,function(res)
+        queryDataPost("http://localhost:6969/api/v1/register",datasend,function(res)
         {
             if(res.ErrorCode ==0)
             {
@@ -380,7 +379,7 @@ $(".btnsave").click(function()
                 maQT : $(".cbQT").val(),
             }
             console.log("CHẠY VÀO KHÔNG CÓ");
-            return queryDataPut("http://localhost:1594/api/v1/user_update",datasend,function(res)
+            return queryDataPut("http://localhost:6969/api/v1/user_update",datasend,function(res)
             {
                 console.log(res);
                 if(res.ErrorCode ==0)
@@ -397,7 +396,7 @@ $(".btnsave").click(function()
         formData.append('file',fileName)
         // gọi API UPLOAD
         $.ajax({
-                url: "http://localhost:1594/upload",
+                url: "http://localhost:6969/upload",
                 type: 'POST',
                 data: formData,
                 contentType : false,
@@ -420,7 +419,7 @@ $(".btnsave").click(function()
                             maLoai :  $(".cbMaLoai").val(),
                             maQT : $(".cbQT").val(),
                         }
-                        queryDataPut("http://localhost:1594/api/v1/user_update",datasend,function(res)
+                        queryDataPut("http://localhost:6969/api/v1/user_update",datasend,function(res)
                         {
                             console.log(res);
                             if(res.ErrorCode == 0)
