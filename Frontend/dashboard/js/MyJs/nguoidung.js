@@ -46,7 +46,7 @@ function DisplayDateTime(datetime)
 function comboBox()
 {
     // load combobox cho mã quốc tịch
-    queryDataGet("http://localhost:1594/api/v1/nations", "", function (res) {
+    queryDataGet("http://localhost:8001/api/v1/nations", "", function (res) {
         // lấy dữ liệu từ api
         const data = res.data;
         // lấy error code để check
@@ -64,7 +64,7 @@ function comboBox()
         }
       });
     // load combobox cho mã loại
-    queryDataGet("http://localhost:1594/api/v1/usertypes", "", function (res) {
+    queryDataGet("http://localhost:8001/api/v1/usertypes", "", function (res) {
         // lấy dữ liệu từ api
         const data = res.data;
         // lấy error code để check
@@ -85,7 +85,7 @@ function comboBox()
 // lấy danh sách người dùng
 function show()
 {
-    queryDataGet("http://localhost:1594/api/v1/users","",function(res){
+    queryDataGet("http://localhost:8001/api/v1/users","",function(res){
         // lấy dữ liệu từ api
         const data = res.data
         // lấy error code để check
@@ -145,7 +145,7 @@ function showSearch ()
 {
     const keyseacrh = $(".txtsearch").val()
     console.log(keyseacrh);
-    queryDataGet("http://localhost:1594/api/v1/users?id="+keyseacrh,"",function(res){
+    queryDataGet("http://localhost:8001/api/v1/users?id="+keyseacrh,"",function(res){
         // lấy dữ liệu từ api
         const data = res.data
         // lấy error code để check
@@ -258,7 +258,7 @@ $(".nguoidung_tb").on('click','.nut_xoa',function()
   {
     if (result==true)
     {
-        queryDataDelete("http://localhost:1594/api/v1/user_remove",{maND:ma},function(res)
+        queryDataDelete("http://localhost:8001/api/v1/user_remove",{maND:ma},function(res)
         {
             if(res.ErrorCode ==0)
                 bootbox.alert("Xóa thành công" + ma)
@@ -346,7 +346,7 @@ $(".btnsave").click(function()
             pass :$(".pass").val(),
         }
         console.log(datasend);
-        queryDataPost("http://localhost:1594/api/v1/register",datasend,function(res)
+        queryDataPost("http://localhost:8001/api/v1/register",datasend,function(res)
         {
             if(res.ErrorCode ==0)
             {
@@ -379,8 +379,7 @@ $(".btnsave").click(function()
                 maLoai :  $(".cbMaLoai").val(),
                 maQT : $(".cbQT").val(),
             }
-            console.log("CHẠY VÀO KHÔNG CÓ");
-            return queryDataPut("http://localhost:1594/api/v1/user_update",datasend,function(res)
+            return queryDataPut("http://localhost:8001/api/v1/user_update",datasend,function(res)
             {
                 console.log(res);
                 if(res.ErrorCode ==0)
@@ -392,12 +391,11 @@ $(".btnsave").click(function()
                 }
             })
         }
-        console.log("CHẠY VÀO CÓ ẢNH");
         // Thường hợp có ảnh
         formData.append('file',fileName)
         // gọi API UPLOAD
         $.ajax({
-                url: "http://localhost:1594/upload",
+                url: "http://localhost:8001/upload",
                 type: 'POST',
                 data: formData,
                 contentType : false,
@@ -420,7 +418,7 @@ $(".btnsave").click(function()
                             maLoai :  $(".cbMaLoai").val(),
                             maQT : $(".cbQT").val(),
                         }
-                        queryDataPut("http://localhost:1594/api/v1/user_update",datasend,function(res)
+                        queryDataPut("http://localhost:8001/api/v1/user_update",datasend,function(res)
                         {
                             console.log(res);
                             if(res.ErrorCode == 0)
