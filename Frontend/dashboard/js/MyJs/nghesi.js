@@ -234,7 +234,7 @@ $(".btnadd").click(function()
     $(".btnsave").prop("disabled",false)
     // thực hiện công việc
     //làm mờ form
-    $(".maNS").prop("disabled",false)
+    $(".maNS").prop("disabled",true)
     $(".tenNS").prop("disabled",false)
     $(".gioiTinh").prop("disabled",false)
     $(".cbQT").prop("disabled",false)
@@ -292,7 +292,6 @@ $(".btnsave").click(function()
                             console.log(res);
                             fileName = res.data
                             const datasend = {
-                                maNS : $(".maNS").val(),
                                 maQT : $(".cbQT").val(),
                                 tenNS : $(".tenNS").val(),
                                 Anh : fileName,
@@ -300,7 +299,7 @@ $(".btnsave").click(function()
                                 ngaysinh : $(".ngaySinh").val(),
                                 mota :$(".mota").val(),
                             }
-                            queryDataPut("http://localhost:8001/api/v1/artists_update",datasend,function(res)
+                            queryDataPost("http://localhost:8001/api/v1/artists_add",datasend,function(res)
                             {
                                 console.log(res);
                                 if(res.ErrorCode == 0)

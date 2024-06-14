@@ -295,7 +295,7 @@ $(".btnsave").click(function()
             const datasend = {
                 maQT : $(".maqt").val(),
                 tenQT : $(".tenqt").val(),
-                anh : fileName,
+                anh :  $(".file_name").text(),
             }
             console.log("CHẠY VÀO KHÔNG CÓ");
             return queryDataPut("http://localhost:8001/api/v1/nation_update",datasend,function(res)
