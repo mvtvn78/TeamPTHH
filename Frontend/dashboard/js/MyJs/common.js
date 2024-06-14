@@ -1,5 +1,5 @@
 $record=4;
-const domain = "http://localhost:1594/assets/"
+const domain = "http://localhost:8001/assets/"
 // Hàm hiệu ứng hiển thị vùng nhóm
 function movemaID(maid){
     var target = $('#'+maid);
