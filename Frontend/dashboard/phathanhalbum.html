@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Phát hành Album</title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="../vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <!-- ImageCSS-->
+    <link href="./css/MyCSS.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title">  <span> MT5 Music</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                          <img src="" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                          <span>Welcome,</span>
+                          <h2 class="profile_name"></h2>
+                        </div>
+                      </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                   <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                <div class="menu_section">
+                  <h3>General</h3>
+                  <ul class="nav side-menu">
+                    <li><a><i class="fa fa-edit"></i> Quản lý <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="album.html">Trang Album</a></li>
+                        <li><a href="baihat.html">Trang Bài Hát</a></li>
+                        <li><a href="loainguoidung.html">Trang Loại Người Dùng</a></li>
+                        <li><a href="nghenhac.html">Trang Xem Thông Tin Nghe Nhạc</a></li>
+                        <li><a href="nghesi.html">Trang Nghệ Sĩ</a></li>
+                        <li><a href="nguoidung.html">Trang Người Dùng</a></li>
+                        <li><a href="phathanhalbum.html">Trang Phát Hành Album</a></li>
+                        <li><a href="phathanhbaihat.html">Trang Phát Hành Bài Hát</a></li>
+                        <li><a href="quoctich.html">Trang Quốc Tịch</a></li>
+                        <li><a href="theloai.html">Trang Thể Loại</a></li>
+                        <li><a href="yeuthich.html">Trang Xem Thông Tin Yêu Thich</a></li>
+                        <li><a href="theodoi.html">Trang Xem Thông Tin Theo dõi</a></li>
+                      </ul>
+                    </li>
+                  
+                  </ul>
+                </div>
+              </div>
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+             
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="row">
+                        <div class="x_content">
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align "
+                                        for="last-name">Mã Nghệ Sĩ
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select class="form-control cbMaNgheSi">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="middle-name"
+                                        class="col-form-label col-md-3 col-sm-3 label-align ">Mã Album
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select class="form-control cbALB">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="item form-group">
+                                    <div class="col-md-6 col-sm-6 offset-md-5">
+                                        <button class="btn btn-primary btnadd" type="button">Thêm</button>
+                                        <button type="button" class="btn btn-success btnsave">Lưu</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <!--  -->
+                    </div>
+
+                </div>
+                        <!-- Table -->
+                        <div class="x_content col-12">
+                            <div class="">
+                            <!-- Thanh tìm kiếm -->
+                            <div class="input-group">
+                                <input type="text" class="form-control txtsearch" placeholder="Tìm kiếm...">
+                                <span class="input-group-btn rm_txtsearch">
+                                    <button class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>
+                                </span>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Mã Nghệ sĩ</th>
+                                        <th>Mã album</th>
+                                        <th>Ngày phát hành</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="phathanhalbum_tb">
+
+                                </tbody>
+                            </table>
+                            </div>
+                            <!--  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <div class="modal showNS" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Thông tin chi tiết nghệ sĩ</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                        <td>Mã nghệ sĩ</td> <td class="addma"></td>
+                        </tr>
+                        <tr>
+                        <td>Họ Tên</td> <td class="addht"></td>
+                        </tr>
+                        <tr>
+                        <td>Giới tính</td> <td class="addgt"></td>
+                        </tr>
+                        <tr>
+                        <td>Ngày sinh</td> <td class="addngaysinh"></td>
+                        </tr>
+                        <tr>
+                        <td>Mã quốc tịch</td> <td class="addQt"></td>
+                        </tr>
+                    </table>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btnCloseNV" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+            <div class="modal showALB" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Thông tin chi tiết album</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                        <td>Mã album</td> <td class="addma"></td>
+                        </tr>
+                        <tr>
+                        <td>Tên album</td> <td class="addht"></td>
+                        </tr>
+                        <tr>
+                        <td>Tình Trạng</td> <td class="addgt"></td>
+                        </tr>
+                        
+                    </table>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btnCloseNV" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right"> <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!--* CommonJS -->
+    <script src="./js/MyJs/common.js"></script>
+    <script src="./js/MyJs/phathanhalbum.js"></script>
+    <!-- bootbox -->
+    <script src="./js//MyJs/bootbox_all_min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="../vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="../vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="../vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="../vendors/starrr/dist/starrr.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+</body>
+
+</html>

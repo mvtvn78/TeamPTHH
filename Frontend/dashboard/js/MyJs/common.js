@@ -95,3 +95,29 @@ function printSTT(record,pageCurr){
         return record*(pageCurr+1)-(record-1);
     }
 }
+// hàm lấy cookie
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  // hàm xóa cookie
+  function deleteCookie(name, path, domain) {
+    if (path === undefined) {
+        path = '/';
+    }
+    let cookieString = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + path + ';';
+    if (domain) {
+        cookieString += ' domain=' + domain + ';';
+    }
+    document.cookie = cookieString;
+}

@@ -21,30 +21,25 @@ $(document).ready(function(){
     //trạng thái ban đầu
     $(".btnsave").prop("disabled",true)
     //làm mờ form
-    $(".maND").prop("disabled",true)
-    $(".hoTen").prop("disabled",true)
+    $(".maNS").prop("disabled",true)
+    $(".tenNS").prop("disabled",true)
     $(".gioiTinh").prop("disabled",true)
-    $(".ngaySinh").prop("disabled",true)
-    $(".email").prop("disabled",true)
-    $(".pass").prop("disabled",true)
-    $(".file_anh").prop("disabled",true)
-    $(".tenND").prop("disabled",true)
-    $(".cbMaLoai").prop("disabled",true)
     $(".cbQT").prop("disabled",true)
+    $(".ngaySinh").prop("disabled",true)
+    $(".file_anh").prop("disabled",true)
+    $(".mota").prop("disabled",true)
     comboBox()
     show()
 });
 function ClearAndShow()  {
     // xóa dữ liệu cũ
-    $(".maND").val(''),
-    $(".hoTen").val(''),
-    $(".gioiTinh").val(1),
-    $(".ngaySinh").val(''),
-    $(".email").val(''),
-    $(".pass").val(''),
-    $(".tenND").val(''),
-    $(".cbMaLoai").val('LOAI1'),
-    $(".cbQT").val('VN'),
+    $(".maNS").val('')
+    $(".tenNS").val('')
+    $(".gioiTinh").val(0)
+    $(".cbQT").val('VN')
+    $(".file_anh").val('')
+    $(".ngaySinh").val('')
+    $(".mota").val('')
     $(".file_name").text('default.jpg')
     $(".avatar-view").attr("src", domain + 'default.jpg');
    // Hiển thị lại dữ liệu
@@ -94,36 +89,18 @@ function comboBox()
             $(".cbQT").html(htmls);
         }
       });
-    // load combobox cho mã loại
-    queryDataGet("http://localhost:1594/api/v1/usertypes", "", function (res) {
-        // lấy dữ liệu từ api
-        const data = res.data;
-        // lấy error code để check
-        const code = res.ErrorCode;
-        if (code != 0) {
-          $(".cbMaLoai").html("không có dữ liệu");
-        } else {
-            let htmls = '';
-        // lặp các element có trong data
-            for (const  element in data) {
-            const item = data[element];
-            htmls = htmls + '<option value="' + item.MaLoai + '">' + item.TenQuyen + "</option>";
-            }
-            $(".cbMaLoai").html(htmls);
-        }
-      });
 }
 // lấy danh sách người dùng
 function show()
-{   
-    queryDataGet("http://localhost:1594/api/v1/users","",function(res){
+{
+    queryDataGet("http://localhost:1594/api/v1/artists","",function(res){
         // lấy dữ liệu từ api
         const data = res.data
         // lấy error code để check
         const code = res.ErrorCode
         if(code != 0)
         {
-            $(".nguoidung_tb").html("không có dữ liệu");
+            $(".nghesi_tb").html("không có dữ liệu");
         }
         else 
         {
@@ -134,38 +111,30 @@ function show()
                 const ngaysinh = new Date(obj.NgaySinh);
                 const hienthingaysinh = ConvertDate(ngaysinh.toLocaleDateString())
                 const hienthigioitinh = (obj.GioiTinh ==1 ) ? "Nam":"Nữ";
-                const ngaytao = new Date(obj.ThoiGianTao);
-                const ngaysua = new Date(obj.ThoiGianSua);
                         htmls=htmls+'<tr>'+
-                                '<td>'+obj.MAND+'</td>'+
-                                '<td>'+obj.MaLoai+'</td>'+
+                                '<td>'+obj.MANS+'</td>'+
+                                '<td>'+obj.TenNS+'</td>'+
                                 '<td>'+obj.MaQT+'</td>'+
-                                '<td>'+obj.HoTen+'</td>'+
                                 '<td>'+hienthigioitinh+'</td>'+
                                 '<td>'+hienthingaysinh+'</td>'+
-                                '<td>'+obj.Email+'</td>'+
                                 '<td>'+obj.Anh+'</td>'+
-                                '<td>'+obj.MatKhau+'</td>'+
-                                '<td>'+DisplayDateTime(ngaytao.toLocaleString())+'</td>'+
-                                '<td>'+DisplayDateTime(ngaysua.toLocaleString())+'</td>'+
-                                '<td> <span class="badge badge-danger nut_xoa" data-ma ="'+obj.MAND+'"> '+
+                                '<td>'+obj.MoTa+'</td>'+
+                                '<td> <span class="badge badge-danger nut_xoa" data-ma ="'+obj.MANS+'"> '+
                                 '<i class="fa fa-remove"></i>&nbsp;Xóa</span>' +
                                 '<span class="badge badge-danger nut_sua" data-ma ="'+
-                                obj.MAND+
-                                '" data-loai ="'+obj.MaLoai+ 
+                                obj.MANS+
+                                '" data-nghesi ="'+obj.TenNS+ 
                                 '" data-qt ="'+obj.MaQT+ 
-                                '" data-ht ="'+obj.HoTen+
                                 '" data-gt ="'+obj.GioiTinh+
                                 '" data-date ="'+ConvertDate(ngaysinh.toLocaleDateString(),false)+
-                                '" data-email ="'+obj.Email+
                                 '" data-anh ="'+obj.Anh+
-                                '" data-mk ="'+obj.MatKhau+
+                                '" data-mota ="'+obj.MoTa+
                                 '"> '+
                                 '<i class="fa fa-edit"></i>&nbsp;Sửa</span></td>'+
                               '</tr>';
               }
             // chèn vào
-            $(".nguoidung_tb").html(htmls); 
+            $(".nghesi_tb").html(htmls);
         }
     })  
 }
@@ -173,19 +142,18 @@ function show()
 function showSearch ()
 {
     const keyseacrh = $(".txtsearch").val()
-    const datasend ={
-        maND : keyseacrh,
-        tenND : keyseacrh,
-    }
     console.log(keyseacrh);
-    queryDataGet("http://localhost:1594/api/v1/user_search",datasend,function(res){
+   
+    
+    queryDataGet(`http://localhost:1594/api/v1/artists_search?maNS=${keyseacrh}&tenNS=${keyseacrh}`,"",function(res){
+        console.log(res);
         // lấy dữ liệu từ api
         const data = res.data
         // lấy error code để check
         const code = res.ErrorCode
         if(code != 0)
         {
-            $(".nguoidung_tb").html("không có dữ liệu");
+            $(".nghesi_tb").html("không có dữ liệu");
         }
         else 
         {
@@ -195,91 +163,74 @@ function showSearch ()
                 const obj=data[index];
                 const ngaysinh = new Date(obj.NgaySinh);
                 const hienthingaysinh = ConvertDate(ngaysinh.toLocaleDateString())
-                const ngaytao = new Date(obj.ThoiGianTao);
-                const ngaysua = new Date(obj.ThoiGianSua);
                 const hienthigioitinh = (obj.GioiTinh ==1 ) ? "Nam":"Nữ";
                         htmls=htmls+'<tr>'+
-                                '<td>'+obj.MAND+'</td>'+
-                                '<td>'+obj.MaLoai+'</td>'+
+                                '<td>'+obj.MANS+'</td>'+
+                                '<td>'+obj.TenNS+'</td>'+
                                 '<td>'+obj.MaQT+'</td>'+
-                                '<td>'+obj.HoTen+'</td>'+
                                 '<td>'+hienthigioitinh+'</td>'+
                                 '<td>'+hienthingaysinh+'</td>'+
-                                '<td>'+obj.Email+'</td>'+
                                 '<td>'+obj.Anh+'</td>'+
-                                '<td>'+obj.MatKhau+'</td>'+
-                                '<td>'+DisplayDateTime(ngaytao.toLocaleString())+'</td>'+
-                                '<td>'+DisplayDateTime(ngaysua.toLocaleString())+'</td>'+
-                                '<td> <span class="badge badge-danger nut_xoa" data-ma ="'+obj.MAND+'"> '+
+                                '<td>'+obj.MoTa+'</td>'+
+                                '<td> <span class="badge badge-danger nut_xoa" data-ma ="'+obj.MANS+'"> '+
                                 '<i class="fa fa-remove"></i>&nbsp;Xóa</span>' +
-                                '<span class="badge badge-danger nut_sua" data-ma ="'+
-                                obj.MAND+
-                                '" data-loai ="'+obj.MaLoai+ 
+                              '<span class="badge badge-danger nut_sua" data-ma ="'+
+                                obj.MANS+
+                                '" data-nghesi ="'+obj.TenNS+ 
                                 '" data-qt ="'+obj.MaQT+ 
-                                '" data-ht ="'+obj.HoTen+
                                 '" data-gt ="'+obj.GioiTinh+
                                 '" data-date ="'+ConvertDate(ngaysinh.toLocaleDateString(),false)+
-                                '" data-email ="'+obj.Email+
                                 '" data-anh ="'+obj.Anh+
-                                '" data-mk ="'+obj.MatKhau+
+                                '" data-mota ="'+obj.MoTa+
                                 '"> '+
                                 '<i class="fa fa-edit"></i>&nbsp;Sửa</span></td>'+
                               '</tr>';
               }
             // chèn vào
-            $(".nguoidung_tb").html(htmls);
+            $(".nghesi_tb").html(htmls);
         }
     })  
-}
+} 
 //Nhấn nút sửa
-$(".nguoidung_tb").on('click','.nut_sua',function()
+$(".nghesi_tb").on('click','.nut_sua',function()
 {
     // thay đổi mode 
     mode = 2;
      //sáng trừ mã người dùng
-     $(".maND").prop("disabled",true)
-     $(".hoTen").prop("disabled",false)
-     $(".gioiTinh").prop("disabled",false)
-     $(".ngaySinh").prop("disabled",false)
-     $(".email").prop("disabled",false)
-     $(".pass").prop("disabled",false)
-     $(".file_anh").prop("disabled",false)
-     $(".pass").prop("disabled",false)
-     $(".cbMaLoai").prop("disabled",false)
-     $(".cbQT").prop("disabled",false)
+     $(".maNS").prop("disabled",true)
+    $(".tenNS").prop("disabled",false)
+    $(".gioiTinh").prop("disabled",false)
+    $(".cbQT").prop("disabled",false)
+    $(".ngaySinh").prop("disabled",false)
+    $(".file_anh").prop("disabled",false)
+    $(".mota").prop("disabled",false)
     // mờ add , sáng save
     $(".btnadd").prop("disabled",true)
     $(".btnsave").prop("disabled",false)
     // lấy giá trị từ bản thân nó
     let MA = $(this).attr("data-ma")
-    let MALOAI = $(this).attr("data-loai")
+    let TNS = $(this).attr("data-nghesi")
     let MAQT = $(this).attr("data-qt")
-    let hoten = $(this).attr("data-ht")
-    let gioitinh = $(this).attr("data-gt")
-    let NS = $(this).attr("data-date")
-    let email = $(this).attr("data-email") 
-    let anh = $(this).attr("data-anh") 
+    let GT = $(this).attr("data-gt")
+    let DaTe = $(this).attr("data-date")
+    let anh = $(this).attr("data-anh")
+    let MT = $(this).attr("data-mota")
     // lấy ảnh đưa lên
     $(".avatar-view").attr("src", domain + anh);
-    let tenND = $(this).attr("data-tend") 
-    let matkhau = $(this).attr("data-mk") 
-    console.log("CHECK",MA,MALOAI,MAQT,hoten,gioitinh,NS,email,anh,tenND,matkhau);
+    console.log("CHECK",MA,TNS,MAQT,GT,DaTe,anh,MT);
     // đưa thông tin lên form
-    $(".maND").val(MA)
-    $(".hoTen").val(hoten)
-    $(".cbMaLoai").val(MALOAI)
+    $(".maNS").val(MA)
+    $(".tenNS").val(TNS)
+    $(".gioiTinh").val(GT)
     $(".cbQT").val(MAQT)
-    $(".gioiTinh").val(gioitinh)
-    $(".tenND").val(tenND)
-    $(".email").val(email)
-    $(".pass").val(matkhau)
-    $(".ngaySinh").val(NS)
+    $(".ngaySinh").val(DaTe)
+    $(".mota").val(MT)
     $(".file_name").text(anh)
-    $(".hoTen").focus()
-    
+    //
+    $(".tenNS").focus()  
 })
 // Nhấn nút xóa
-$(".nguoidung_tb").on('click','.nut_xoa',function()
+$(".nghesi_tb").on('click','.nut_xoa',function()
 {
   console.log("da click nut xoa")
   const ma = $(this).attr("data-ma")
@@ -288,13 +239,13 @@ $(".nguoidung_tb").on('click','.nut_xoa',function()
   {
     if (result==true)
     {
-        queryDataDelete("http://localhost:1594/api/v1/user_remove",{maND:ma},function(res)
+        queryDataDelete("http://localhost:1594/api/v1/artists_remove",{maNS:ma},function(res)
         {
             if(res.ErrorCode ==0)
-                bootbox.alert("Xóa thành công" + ma)
+                bootbox.alert("Xóa thành công " + ma)
             else 
                 bootbox.alert("Xóa không thành công")
-                ClearAndShow()
+            ClearAndShow()
         })
 
     }
@@ -305,7 +256,8 @@ $(".nguoidung_tb").on('click','.nut_xoa',function()
 // Nhấn nút xóa thanh tìm kiếm
 $(".rm_txtsearch").click(function(e){
     $(".txtsearch").val('')
-    show()
+    // Hiển thị lại dữ liệu
+    ClearAndShow()
 })
 // Khi tìm kiếm nhấn nút enter tìm kiếm dữ liệu
 $(".txtsearch").keyup(function(e){
@@ -324,27 +276,23 @@ $(".btnadd").click(function()
     $(".btnsave").prop("disabled",false)
     // thực hiện công việc
     //làm mờ form
-    $(".maND").prop("disabled",true)
-    $(".hoTen").prop("disabled",false)
+    $(".maNS").prop("disabled",true)
+    $(".tenNS").prop("disabled",false)
     $(".gioiTinh").prop("disabled",false)
-    $(".ngaySinh").prop("disabled",false)
-    $(".email").prop("disabled",false)
-    $(".pass").prop("disabled",false)
-    $(".file_anh").prop("disabled",true)
-    $(".tenND").prop("disabled",true)
-    $(".cbMaLoai").prop("disabled",true)
     $(".cbQT").prop("disabled",false)
-    $(".hoTen").focus()
+    $(".ngaySinh").prop("disabled",false)
+    $(".file_anh").prop("disabled",false)
+    $(".mota").prop("disabled",false)
+    $(".maNS").focus()
     //Xóa dữ liệu cũ
-    $(".maND").val('')
-    $(".hoTen").val('')
-    $(".cbMaLoai").val('LOAI1')
+    $(".maNS").val('')
+    $(".tenNS").val('')
+    $(".gioiTinh").val(0)
     $(".cbQT").val('VN')
-    $(".gioiTinh").val(1)
-    $(".tenND").val('')
-    $(".email").val('')
-    $(".pass").val('')
     $(".ngaySinh").val('')
+    $(".file_anh").val('')
+    $(".mota").val('')
+    
 })
 // Khi nhấn lưu
 $(".btnsave").click(function()
@@ -353,41 +301,92 @@ $(".btnsave").click(function()
     $(".btnadd").prop("disabled",false)
     $(".btnsave").prop("disabled",true)
     //Khi lưu xong
-    $(".maND").prop("disabled",true)
-    $(".hoTen").prop("disabled",true)
+    $(".maNS").prop("disabled",true)
+    $(".tenNS").prop("disabled",true)
     $(".gioiTinh").prop("disabled",true)
-    $(".ngaySinh").prop("disabled",true)
-    $(".email").prop("disabled",true)
-    $(".pass").prop("disabled",true)
-    $(".file_anh").prop("disabled",true)
-    $(".tenND").prop("disabled",true)
-    $(".cbMaLoai").prop("disabled",true)
     $(".cbQT").prop("disabled",true)
+    $(".ngaySinh").prop("disabled",true)
+    $(".file_anh").prop("disabled",true)
+    $(".mota").prop("disabled",true)
     // thực hiện gọi API đăng ký
     if(mode ==1)
-    {
-        // gọi API đăng ký
-        const datasend = {
-            maQT : $(".cbQT").val(),
-            hoTen : $(".hoTen").val(),
-            gioiTinh : $(".gioiTinh").val(),
-            ngaySinh : $(".ngaySinh").val(),
-            email :$(".email").val(),
-            pass :$(".pass").val(),
-        }
-        console.log(datasend);
-        queryDataPost("http://localhost:1594/api/v1/register",datasend,function(res)
         {
-            if(res.ErrorCode ==0)
-            {
-                bootbox.alert("Lưu thành công");
-            }
-            else {
-                bootbox.alert("Lưu thất bại");
-            }
-            ClearAndShow()
-        })
-    }
+            // tạo chế độ form data
+            const formData = new FormData();
+            // lấy tệp tin
+            let fileName = $(".file_anh")[0].files[0]
+            //Trường hợp  có  ảnh
+            if(fileName)
+                {
+                    // Thường hợp có ảnh
+            formData.append('file',fileName)
+            // gọi API UPLOAD
+            $.ajax({
+                    url: "http://localhost:1594/upload",
+                    type: 'POST',
+                    data: formData,
+                    contentType : false,
+                    processData : false,
+                    success: function(res)
+                    {
+                        if(res.ErrorCode === 0)
+                        {
+                            console.log(res);
+                            fileName = res.data
+                            const datasend = {
+                                maQT : $(".cbQT").val(),
+                                tenNS : $(".tenNS").val(),
+                                Anh : fileName,
+                                gt : $(".gioiTinh").val(),
+                                ngaysinh : $(".ngaySinh").val(),
+                                mota :$(".mota").val(),
+                            }
+                            queryDataPost("http://localhost:1594/api/v1/artists_add",datasend,function(res)
+                            {
+                                console.log(res);
+                                if(res.ErrorCode == 0)
+                                {
+                                    bootbox.alert("Lưu thành công");
+                                }
+                                else {
+                                    bootbox.alert("Lưu thất bại");
+                                }
+                                ClearAndShow()
+                            })
+                        }
+                        else 
+                        {
+                            bootbox.alert("Upload ảnh thất bại");
+                            ClearAndShow()
+                        }
+                    }
+                }
+            )
+                }
+                else{
+                    const datasend = {
+                        maQT : $(".cbQT").val(),
+                        tenNS : $(".tenNS").val(),
+                        Anh : $(".file_name").text(),
+                        gt : $(".gioiTinh").val(),
+                        ngaysinh : $(".ngaySinh").val(),
+                        mota :$(".mota").val(),
+                    }
+                    queryDataPost("http://localhost:1594/api/v1/artists_add",datasend,function(res)
+                            {
+                                console.log(res);
+                                if(res.ErrorCode == 0)
+                                {
+                                    bootbox.alert("Lưu thành công");
+                                }
+                                else {
+                                    bootbox.alert("Lưu thất bại");
+                                }
+                                ClearAndShow()
+                            })
+                }
+           
+        }
     // thực hiện gọi API sửa
     else
     {
@@ -399,32 +398,28 @@ $(".btnsave").click(function()
         if(!fileName)
         {
             const datasend = {
-                maND :  $(".maND").val(),
-                hoTen :  $(".hoTen").val(),
-                gioiTinh :  $(".gioiTinh").val(),
-                ngaySinh : $(".ngaySinh").val(),
-                email :$(".email").val(),
-                pass :$(".pass").val(),
-                Anh : $(".file_name").text(),
-                tenND : $(".tenND").val(),
-                maLoai :  $(".cbMaLoai").val(),
-                maQT : $(".cbQT").val(),
+                                maNS : $(".maNS").val(),
+                                maQT : $(".cbQT").val(),
+                                tenNS : $(".tenNS").val(),
+                                Anh :  $(".file_name").text(),
+                                gt : $(".gioiTinh").val(),
+                                ngaysinh : $(".ngaySinh").val(),
+                                mota :$(".mota").val(),
             }
-            console.log("CHẠY VÀO KHÔNG CÓ");
-            return queryDataPut("http://localhost:1594/api/v1/user_update",datasend,function(res)
+            return queryDataPut("http://localhost:1594/api/v1/artists_update",datasend,function(res)
             {
                 console.log(res);
                 if(res.ErrorCode ==0)
                 {
                     bootbox.alert("Lưu thành công");
+                    ClearAndShow()
                 }
                 else {
                     bootbox.alert("Lưu thất bại");
+                    ClearAndShow()
                 }
-                ClearAndShow()
             })
         }
-        console.log("CHẠY VÀO CÓ ẢNH");
         // Thường hợp có ảnh
         formData.append('file',fileName)
         // gọi API UPLOAD
@@ -441,23 +436,21 @@ $(".btnsave").click(function()
                         console.log(res);
                         fileName = res.data
                         const datasend = {
-                            maND :  $(".maND").val(),
-                            hoTen :  $(".hoTen").val(),
-                            gioiTinh :  $(".gioiTinh").val(),
-                            ngaySinh : $(".ngaySinh").val(),
-                            email :$(".email").val(),
-                            pass :$(".pass").val(),
-                            Anh : fileName,
-                            tenND : $(".tenND").val(),
-                            maLoai :  $(".cbMaLoai").val(),
+                            maNS : $(".maNS").val(),
                             maQT : $(".cbQT").val(),
+                            tenNS : $(".tenNS").val(),
+                            Anh : fileName,
+                            gt : $(".gioiTinh").val(),
+                            ngaysinh : $(".ngaySinh").val(),
+                            mota :$(".mota").val(),
                         }
-                        queryDataPut("http://localhost:1594/api/v1/user_update",datasend,function(res)
+                        queryDataPut("http://localhost:1594/api/v1/artists_update",datasend,function(res)
                         {
                             console.log(res);
                             if(res.ErrorCode == 0)
                             {
                                 bootbox.alert("Lưu thành công");
+                                
                             }
                             else {
                                 bootbox.alert("Lưu thất bại");

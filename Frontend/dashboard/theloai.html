@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>MT5 Music | </title>
+    <title>Trang thể loại </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -117,7 +117,7 @@
                             <div class="x_panel">
                                 <div class="x_title">
 
-                                    <h2>Người dùng</h2>
+                                    <h2>Thể loại</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -138,28 +138,36 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div class="d-flex justify-content-center">
+                                    <!-- <div class="d-flex justify-content-center">
                                         <div id="crop-avatar" class="Anh">
                                             <img class="img-responsive avatar-view"
                                                 src="http://localhost:1594/assets/default.jpg" alt="Avatar"
                                                 title="Change the avatar" >
                                                 <form class="file_button_container" id="userinfo" enctype= "multipart/form-data">
                                                     <input type="file" name="file" class="file_anh"/>
-                                                    <span for="file"  class="center file_name">default.jpg</span>
+                                                    <span for="file"  class="center file_name">default.png</span>
                                                 </form>
                                         </div>
                                     </div>
-                                    <br />
+                                    <br /> -->
                                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                         <div class="item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3 label-align "
-                                                for="first-name">Mã người dùng
+                                                for="first-name">Mã thể loại
                                             </label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" id="first-name" class="form-control maND">
+                                                <input type="text" id="first-name" class="form-control maTL">
                                             </div>
                                         </div>
                                         <div class="item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                                for="first-name">Tên thể loại
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                                <input type="text" id="first-name" class="form-control tenTL">
+                                            </div>
+                                        </div>
+                                        <!-- <div class="item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3 label-align "
                                                 for="first-name">Họ và tên
                                             </label>
@@ -174,9 +182,9 @@
                                             <div class="col-md-6 col-sm-6 ">
                                                 <input type="email" id="first-name" class="form-control  email">
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="item form-group">
+                                        <!-- <div class="item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3 label-align"
                                                 for="first-name">Mật khẩu
                                             </label>
@@ -193,8 +201,8 @@
 
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
+                                        </div> -->
+                                        <!-- <div class="form-group row">
                                             <label for="middle-name"
                                                 class="col-form-label col-md-3 col-sm-3 label-align ">Mã quốc
                                                 tịch</label>
@@ -213,8 +221,8 @@
                                                     <option value="0">Nữ</option>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="item form-group">
+                                        </div> -->
+                                        <!-- <div class="item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày sinh <span
                                                     class="required">*</span>
                                             </label>
@@ -222,7 +230,7 @@
                                                 <input id="birthday" class="date-picker form-control ngaySinh"
                                                     type="date">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="ln_solid"></div>
                                         <div class="item form-group">
                                             <div class="col-md-6 col-sm-6 offset-md-5">
@@ -251,17 +259,8 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Mã người dùng</th>
-                                        <th>Mã loại</th>
-                                        <th>Mã QT</th>
-                                        <th>Họ tên</th>
-                                        <th>Giới tính</th>
-                                        <th>Ngày sinh</th>
-                                        <th>Email</th>
-                                        <th>Ảnh</th>
-                                        <th>Mật khẩu</th>
-                                        <th>Thời gian tạo</th>
-                                        <th>Thời gian sửa</th>
+                                        <th>Mã thể loại</th>
+                                        <th>tên thể loại</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
@@ -291,7 +290,7 @@
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!--* CommonJS -->
     <script src="./js/MyJs/common.js"></script>
-    <script src="./js/MyJs/nguoidung.js"></script>
+    <script src="./js/MyJs/theloai.js"></script>
     <!-- bootbox -->
     <script src="./js//MyJs/bootbox_all_min.js"></script>
     <!-- Bootstrap -->
